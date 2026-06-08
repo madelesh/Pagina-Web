@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 // PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
 const firebaseConfig = {
@@ -17,7 +16,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 const $ = (id) => document.getElementById(id);
 const productsBox = $("products");
@@ -90,17 +88,24 @@ productForm.onsubmit = async (e) => {
   $("formMsg").textContent = "Guardando...";
   try {
     const imageFile = $("image").files[0];
-    const productId = $("productId").value;
-    let imageUrl = null;
-    let imagePath = null;
+let imageUrl = null;
 
-    if (imageFile) {
-      imagePath = `products/${Date.now()}-${imageFile.name}`;
-      const imageRef = ref(storage, imagePath);
-      await uploadBytes(imageRef, imageFile);
-      imageUrl = await getDownloadURL(imageRef);
+if (imageFile) {
+  const formData = new FormData();
+  formData.append("file", imageFile);
+  formData.append("upload_preset", "catalogo");
+
+  const response = await fetch(
+    "https://api.cloudinary.com/v1_1/dufqc3xpo/image/upload",
+    {
+      method: "POST",
+      body: formData
     }
+  );
 
+  const result = await response.json();
+  imageUrl = result.secure_url;
+}
     const data = {
       name: $("name").value.trim(),
       price: Number($("price").value),
@@ -118,7 +123,7 @@ productForm.onsubmit = async (e) => {
 
     if (imageUrl) {
       data.imageUrl = imageUrl;
-      data.imagePath = imagePath;
+    // Cloudinary no elimina automáticamente desde el navegador
     }
 
     if (productId) {
