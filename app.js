@@ -89,6 +89,7 @@ productForm.onsubmit = async (e) => {
   try {
     const imageFile = $("image").files[0];
 let imageUrl = null;
+    const productId = $("productId").value;
 
 if (imageFile) {
   const formData = new FormData();
@@ -223,11 +224,11 @@ function editProduct(id) {
 
 async function deleteProduct(id) {
   if (!confirm("¿Eliminar este producto?")) return;
-  const p = products.find(x => x.id === id);
+
   try {
     await deleteDoc(doc(db, "products", id));
-    if (p?.imagePath) await deleteObject(ref(storage, p.imagePath)).catch(() => {});
   } catch (error) {
+    console.error(error);
     alert("No se pudo eliminar el producto.");
   }
 }
