@@ -4,7 +4,7 @@ import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot
 
 // PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
 const firebaseConfig = {
-  apiKey: "TU_API_KEY_REAL",
+  apiKey: "AIzaSyCcb41cpDfAMWcwGux1rLSBnNM5a2ibO9U",
   authDomain: "madelesh-4a1c3.firebaseapp.com",
   projectId: "madelesh-4a1c3",
   storageBucket: "madelesh-4a1c3.firebasestorage.app",
