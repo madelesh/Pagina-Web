@@ -5,12 +5,13 @@ import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "http
 
 // PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "TU_API_KEY_REAL",
+  authDomain: "madelesh-4a1c3.firebaseapp.com",
+  projectId: "madelesh-4a1c3",
+  storageBucket: "madelesh-4a1c3.firebasestorage.app",
+  messagingSenderId: "510377962858",
+  appId: "1:510377962858:web:452c64af206e86ab94c913",
+  measurementId: "G-NQYV9WP4GR"
 };
 
 const app = initializeApp(firebaseConfig);
