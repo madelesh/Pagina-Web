@@ -1,0 +1,15 @@
+PASOS PARA USAR ESTE CATÁLOGO CON FIREBASE Y GITHUB PAGES
+
+1. Entra a Firebase Console y crea un proyecto.
+2. Activa Authentication > Sign-in method > Email/Password.
+3. Crea el usuario administrador con correo y contraseña.
+4. Activa Firestore Database.
+5. Activa Storage.
+6. Copia las reglas de firebase-reglas.txt en Firestore Rules y Storage Rules.
+7. En Project settings > General > Your apps, crea una app web.
+8. Copia el firebaseConfig y reemplázalo en app.js.
+9. Sube index.html, styles.css y app.js a tu repositorio de GitHub.
+10. Activa GitHub Pages desde Settings > Pages.
+
+El admin podrá agregar, editar, eliminar productos y subir imágenes desde la misma página.
+Los visitantes solo verán el catálogo.

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Gaming</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">GX</div>
+      <div>
+        <h1>Catálogo Gaming</h1>
+        <p>Mouse • Teclados • Headsets • In Ears</p>
+      </div>
+    </div>
+    <button id="loginBtn" class="btn btn-outline">Iniciar sesión</button>
+    <button id="logoutBtn" class="btn btn-danger hidden">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Periféricos competitivos</h2>
+      <p>Explora productos por categoría y revisa su ficha completa.</p>
+    </section>
+
+    <section class="filters">
+      <button class="tab active" data-category="Todos">Inicio</button>
+      <button class="tab" data-category="Mouse">Mouse</button>
+      <button class="tab" data-category="Teclado">Teclados</button>
+      <button class="tab" data-category="Headsets">Headsets</button>
+      <button class="tab" data-category="In Ears">In Ears</button>
+      <input id="searchInput" type="search" placeholder="Buscar producto..." />
+    </section>
+
+    <section id="adminPanel" class="admin-panel hidden">
+      <div class="panel-title">
+        <h2>Panel administrador</h2>
+        <button id="changePasswordBtn" class="btn btn-outline">Cambiar clave</button>
+      </div>
+
+      <form id="productForm" class="product-form">
+        <input type="hidden" id="productId" />
+        <div class="grid-2">
+          <label>Nombre<input id="name" required placeholder="Scyrox V8" /></label>
+          <label>Precio<input id="price" required type="number" step="0.01" placeholder="70" /></label>
+        </div>
+        <div class="grid-2">
+          <label>Categoría
+            <select id="category" required>
+              <option>Mouse</option>
+              <option>Teclado</option>
+              <option>Headsets</option>
+              <option>In Ears</option>
+            </select>
+          </label>
+          <label>Etiqueta<input id="tag" placeholder="CALIDAD / PRECIO" /></label>
+        </div>
+        <label>Descripción<textarea id="description" rows="3" placeholder="Descripción del producto"></textarea></label>
+        <div class="grid-3">
+          <label>Colores<input id="colors" placeholder="Negro, Blanco, Amarillo" /></label>
+          <label>Conexiones<input id="connections" placeholder="USB, Wireless 2.4GHz, Bluetooth" /></label>
+          <label>Tipo de agarre<input id="grip" placeholder="Palm Grip" /></label>
+        </div>
+        <div class="grid-3">
+          <label>Sensor<input id="sensor" placeholder="Pixart 3395" /></label>
+          <label>DPI máximo<input id="dpi" placeholder="30000" /></label>
+          <label>Peso<input id="weight" placeholder="39 g" /></label>
+        </div>
+        <label>Imagen del producto<input id="image" type="file" accept="image/*" /></label>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Guardar producto</button>
+          <button class="btn btn-outline" type="button" id="cancelEditBtn">Cancelar</button>
+        </div>
+        <p id="formMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <section id="products" class="products"></section>
+  </main>
+
+  <dialog id="loginModal" class="modal">
+    <form id="loginForm" class="modal-card">
+      <button type="button" class="close" id="closeLogin">×</button>
+      <h2>Iniciar sesión</h2>
+      <label>Correo<input id="email" type="email" required placeholder="admin@correo.com" /></label>
+      <label>Contraseña<input id="password" type="password" required placeholder="********" /></label>
+      <button class="btn btn-primary" type="submit">Entrar</button>
+      <p id="loginMsg" class="msg"></p>
+    </form>
+  </dialog>
+
+  <dialog id="detailModal" class="modal">
+    <div class="detail-card">
+      <button class="close" id="closeDetail">×</button>
+      <div id="detailContent"></div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
